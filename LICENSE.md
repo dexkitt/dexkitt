@@ -1,7 +1,6 @@
 # Cat License
 
-Copyright (c) 2021-2024 Yuuki "yvvki" Rika
-<https://steamcommunity.com/id/yvvki>
+Copyright (c) 2026 dexkitt
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided the following
