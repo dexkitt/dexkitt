@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "soe",
+	"version": "${version}",
+	"name": "saint's odds & ends",
+	"description": "theres NOTHING... thank you son.",
+	"authors": [
+		"dexkitt"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CAT",
+	"icon": "assets/soe/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+          "dev.dexkitt.Common"
+		],
+		"client": [
+          "dev.dexkitt.client.Client"
+		],
+		"fabric-datagen": [
+          "dev.dexkitt.client.DataGen"
+		]
+	},
+	"mixins": [
+		"soe.mixins.json",
+		{
+			"config": "soe.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
