@@ -13,6 +13,16 @@
 	"upload_source_maps": true,
 	"find_additional_modules": true,
 	"placement": {  "mode": "smart" },
+	"routes": [
+		{
+			"pattern": "dexkitt.dev",
+			"custom_domain": true
+		},
+		{
+			"pattern": "discord.dexkitt.dev",
+			"custom_domain": true
+		}
+	],
 	/**
 	 * Bindings
 	 * Bindings allow your Worker to interact with resources on the Cloudflare Developer Platform, including
