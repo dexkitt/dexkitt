@@ -7,7 +7,7 @@ export default {
 			return new Response("hi");
 		}
 
-		const route = await import(`./routes/${subDomain}`);
+		const route = await import(`./routes/${subDomain}.ts`);
 		if (!route || !route.default || !route.default.fetch) {
 			return new Response("what?", { status: 404 });
 		}
