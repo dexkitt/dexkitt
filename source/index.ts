@@ -4,7 +4,7 @@ export default {
 		const subDomain = url.hostname.split(".").length > 2 ? url.hostname.split(".")[0] : "";
 
 		if (subDomain.length <= 0) {
-			return new Response("hi");
+			return new Response("h");
 		}
 
 		const route = await import(`./routes/${subDomain}.ts`);
