@@ -36,7 +36,8 @@
 	 * https://developers.cloudflare.com/workers/configuration/secrets/
 	 */
 	"vars": {
-		"discordId": "1544115968941494373"
+		"discordId": "1544115968941494373",
+		"test": "ok"
 	}
 	/**
 	 * Static Assets
