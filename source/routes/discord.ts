@@ -2,7 +2,8 @@ import {
     ExecutionContext
 } from "@cloudflare/workers-types";
 import {
-    verifyKey
+    verifyKey,
+    InteractionResponseType
 } from "discord-interactions"
 
 export default {
@@ -37,8 +38,10 @@ export default {
         switch (path) {
             case "/interactions":
                 switch (type) {
-                    case 1:
-                        return Response.json({ type: 1 }, { status: 200 });
+                    case 1: // ping
+                        return Response.json({ type: InteractionResponseType.PONG }, { status: 200 });
+                    case 2: // application command
+                        return Response.json({ type: InteractionResponseType.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE }, { status: 200 });
                 }
                 return new Response("invalid", { status: 400 });
             case "/webhook":
