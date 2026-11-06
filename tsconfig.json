@@ -25,7 +25,7 @@
 		"noEmit": true,
 
 		/* Ensure that each file can be safely transpiled without relying on other imports. */
-		"isolatedModules": false,
+		"isolatedModules": true,
 		/* Allow 'import x from y' when a module doesn't have a default export. */
 		"allowSyntheticDefaultImports": true,
 		/* Ensure that casing is correct in imports. */
@@ -41,6 +41,6 @@
 			"node"
 		]
 	},
-	"exclude": [],
-	"include": ["worker-configuration.d.ts", "source/**/*.ts"]
+	"exclude": ["test"],
+	"include": ["worker-configuration.d.ts", "src/**/*.ts"]
 }

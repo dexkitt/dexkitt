@@ -1,35 +1,43 @@
-import type { 
+import { 
     ExecutionContext
 } from "@cloudflare/workers-types";
-import * as DiscordInteractions from "discord-interactions"
-
-type Env = Record<string, any>;
+import {
+    verifyKey
+} from "discord-interactions"
 
 export default {
-    async fetch(request: Request, self: Env, ctx: ExecutionContext): Promise<Response> {
-        const json: Record<string, any> = await request.json();
-        const interactionType = json.type;
+    async fetch(request: Request, self: Record<string, any>, ctx: ExecutionContext): Promise<Response> {
+        const url = new URL(request.url);
+        const json = await request.json();
 
-        if (!interactionType) return new Response("die", { status: 401 });
+        const type = json.type || null;
+        const path = url.pathname;
 
-        const publicId = self.discordId;
-        const rawBody = await request.text();
-
-        if (!publicId) return new Response("public bot id is null", { status: 401 });
+        const publicKey = self.discord.publicId;
 
         const signature = request.headers.get("X-Signature-Ed25519") || "";
         const timestamp = request.headers.get("X-Signature-Timestamp") || "";
 
-        const valid = await DiscordInteractions.verifyKey(rawBody, signature, timestamp, publicId);
-        if (!valid) return new Response("invalid signature", { status: 401 });
+        const isValidRequest = await verifyKey(
+            await JSON.stringify(json),
+            signature,
+            timestamp,
+            publicKey
+        );
 
-        switch (interactionType) {
-            case 1:
-                return new Response(JSON.stringify({
-                    type: 1
-                }), {status: 200})
-            default:
-                return new Response("unsupported interaction type", { status: 401 });
+        if (!isValidRequest) return new Response("invalid", { status: 401 });
+
+        switch (path) {
+            case "/interactions":
+                switch (type) {
+                    case 1:
+                        return Response.json({ type: 1 }, { status: 200 });
+                }
+                return new Response("invalid", { status: 400 });
+            case "/webhook":
+                return new Response("invalid", { status: 400 });
         }
+
+        return new Response("invalid", { status: 400 });
     }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "billowing-mud-5e76",
+  "name": "main",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -10,11 +10,9 @@
     "cf-typegen": "wrangler types"
   },
   "devDependencies": {
-    "@cloudflare/vitest-plugin": "^1.4.3",
     "@types/node": "^26.6.6",
     "typescript": "^5.5.2",
-    "vitest": "~5.0.3",
-    "wrangler": "^4.156.2"
+    "wrangler": "^4.158.0"
   },
   "dependencies": {
     "@cloudflare/workers-types": "^5.20261104.1",
