@@ -41,6 +41,22 @@ export default {
                     case 1: // ping
                         return Response.json({ type: InteractionResponseType.PONG }, { status: 200 });
                     case 2: // application command
+                        const interaction = json;
+                        const commandName = interaction.data.name;
+
+                        const command = await import(`../cmds/slash/${commandName}.ts`);
+
+                        if (!command || !command.default || !command.default.execute)
+                            return Response.json({ 
+                                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                                data: {
+                                    content: "*what?*"
+                                }
+                            }, { status: 200 });
+
+                        ctx.waitUntil((async () => {
+                            
+                        })());
                         return Response.json({ type: InteractionResponseType.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE }, { status: 200 });
                 }
                 return new Response("invalid", { status: 400 });
