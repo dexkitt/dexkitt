@@ -13,7 +13,7 @@ export default {
         const type = json.type || null;
         const path = url.pathname;
 
-        const publicKey = self.discord.publicId;
+        const publicKey = self.discord.publicKey;
 
         const signature = request.headers.get("X-Signature-Ed25519") || "";
         const timestamp = request.headers.get("X-Signature-Timestamp") || "";
