@@ -65,8 +65,11 @@ export default {
                             }, { status: 200 });
 
                         ctx.waitUntil((async () => {
-                            
+                            try {
+                                await command.default.execute(self, interaction);
+                            } catch (e) {console.error(e)};
                         })());
+
                         return Response.json({ type: InteractionResponseType.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE }, { status: 200 });
                 }
                 return new Response("invalid", { status: 400 });

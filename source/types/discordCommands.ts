@@ -15,7 +15,7 @@ export interface SlashCommand {
 
     metadata: SlashCommandMetadata;
 
-    execute: (interaction: any) => Promise<void>;
+    execute: (self: Record<string, any>, interaction: any) => Promise<void>;
 }
 
 export interface SlashCommandMetadata {
