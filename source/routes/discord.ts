@@ -44,7 +44,17 @@ export default {
                         const interaction = json;
                         const commandName = interaction.data.name;
 
-                        const command = await import(`../cmds/slash/${commandName}.ts`);
+                        let command;
+                        try {
+                            command = await import(`../cmds/slash/${commandName}.ts`);
+                        } catch {
+                            return Response.json({ 
+                                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                                data: {
+                                    content: "*what?*"
+                                }
+                            }, { status: 200 });
+                        }
 
                         if (!command || !command.default || !command.default.execute)
                             return Response.json({ 
