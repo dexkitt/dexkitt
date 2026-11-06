@@ -1,10 +1,15 @@
 // read dirs
 import fs from 'fs';
-import env from 'dotenv';
-env.config();
 
-const globDiscordUrl = `https://discord.com/api/v10/applications/${process.env.appId}/commands`
-const guildDiscordUrl = (guildId) => `https://discord.com/api/v10/applications/${process.env.appId}/guilds/${guildId}/commands`
+const { appId, appToken } = process.env;
+
+if (!appId || !appToken) {
+    throw new Error('appId and appToken environment variables are required');
+}
+
+
+const globDiscordUrl = `https://discord.com/api/v10/applications/${appId}/commands`;
+const guildDiscordUrl = (guildId) => `https://discord.com/api/v10/applications/${appId}/guilds/${guildId}/commands`;
 
 const workingDir = process.cwd();
 const slashDir = `${workingDir}/source/cmds/slash`;
@@ -54,11 +59,15 @@ for (const key in final) {
     const body = JSON.stringify(final[key]);
 
     await fetch(url, {
-        method: 'PATCH',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bot ${process.env.appToken}`
+            'Authorization': `Bot ${appToken}`
         },
         body
+    }).then(async (response) => {
+        if (!response.ok) {
+            throw new Error(`Discord command registration failed (${response.status}): ${await response.text()}`);
+        }
     });
 }
