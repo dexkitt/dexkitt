@@ -8,7 +8,14 @@ import {
 export default {
     async fetch(request: Request, self: Record<string, any>, ctx: ExecutionContext): Promise<Response> {
         const url = new URL(request.url);
-        const json = await JSON.parse(await request.text());
+        const body = await request.text();
+        let json: Record<string, any>;
+
+        try {
+            json = JSON.parse(body);
+        } catch {
+            return new Response("invalid", { status: 400 });
+        }
 
         const type = json.type || null;
         const path = url.pathname;
@@ -19,7 +26,7 @@ export default {
         const timestamp = request.headers.get("X-Signature-Timestamp") || "";
 
         const isValidRequest = await verifyKey(
-            await JSON.stringify(json),
+            body,
             signature,
             timestamp,
             publicKey
