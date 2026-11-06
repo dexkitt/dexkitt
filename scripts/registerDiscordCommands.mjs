@@ -7,7 +7,6 @@ if (!appId || !appToken) {
     throw new Error('appId and appToken environment variables are required');
 }
 
-
 const globDiscordUrl = `https://discord.com/api/v10/applications/${appId}/commands`;
 const guildDiscordUrl = (guildId) => `https://discord.com/api/v10/applications/${appId}/guilds/${guildId}/commands`;
 

@@ -9,7 +9,7 @@ const list = [
     "no thanks.",
     "absolutely not.",
     "i am not kissing <@{user}>.",
-    "nope."
+    "nope.",
 ]
 
 // haha funny
@@ -41,8 +41,8 @@ export default {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                content: response
+                content: `*${response}*`
             })
-        });
+        }); // REJECT DIE DIE DIE
     }
 } satisfies SlashCommand;
