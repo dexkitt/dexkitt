@@ -8,7 +8,7 @@ import {
 export default {
     async fetch(request: Request, self: Record<string, any>, ctx: ExecutionContext): Promise<Response> {
         const url = new URL(request.url);
-        const json = await request.json();
+        const json = await JSON.parse(await request.text());
 
         const type = json.type || null;
         const path = url.pathname;
