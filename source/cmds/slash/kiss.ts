@@ -1,7 +1,7 @@
 import {
-    SlashCommand,
     CommandType
 } from "./../../types/discordCommands.ts";
+import type { SlashCommand } from "./../../types/discordCommands.ts";
 
 const list = [
     "..no.",
