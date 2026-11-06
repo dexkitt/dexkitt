@@ -18,7 +18,7 @@ export default {
             name: "evilness",
             description: "how evil are they",
             type: 4,
-            required: false,
+            required: true,
         },
         {
             name: "reason",

@@ -66,7 +66,7 @@ for (const key in final) {
         body
     }).then(async (response) => {
         if (!response.ok) {
-            throw new Error(`Discord command registration failed (${response.status}): ${await response.text()}`);
+            throw new Error(`(${response.status}): ${await response.text()}`);
         }
     });
 }
