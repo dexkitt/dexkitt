@@ -4,12 +4,11 @@ import {
 import type { SlashCommand } from "./../../types/discordCommands.ts";
 
 const list = [
-    "..no.",
-    "im not doing that.",
-    "no thanks.",
-    "absolutely not.",
-    "i am not kissing <@{user}>.",
-    "nope.",
+    "why?",
+    "why dont *you* do it?",
+    "arent you married to them?",
+    "i dont even know them.",
+    "i am not becoming the third wheel."
 ]
 
 // haha funny
@@ -35,14 +34,14 @@ export default {
         const userId = interaction.data.options.find((option: any) => option.name === "user").value;
         const response = list[Math.floor(Math.random() * list.length)].replace("{user}", userId);
 
-        // await fetch(`https://discord.com/api/v10/webhooks/${publicId}/${interactionToken}/messages/@original`, {
-        //     method: "PATCH",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({
-        //         content: `*${response}*`
-        //     })
-        // }); // REJECT DIE DIE DIE
+        await fetch(`https://discord.com/api/v10/webhooks/${publicId}/${interactionToken}/messages/@original`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                content: `*${response}*`
+            })
+        }); // REJECT DIE DIE DIE
     }
 } satisfies SlashCommand;
