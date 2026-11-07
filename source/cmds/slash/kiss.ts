@@ -4,11 +4,7 @@ import {
 import type { SlashCommand } from "./../../types/discordCommands.ts";
 
 const list = [
-    "why?",
-    "why dont *you* do it?",
-    "arent you married to them?",
-    "i dont even know them.",
-    "i am not becoming the third wheel."
+    "...",
 ]
 
 // haha funny
